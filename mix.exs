@@ -34,6 +34,9 @@ defmodule Imgex.Mixfile do
   end
 
   defp deps do
-    []
+    [
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.10", only: :dev}
+    ]
   end
 end
