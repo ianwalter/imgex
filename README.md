@@ -11,7 +11,7 @@ installed as:
 
     ```elixir
       def deps do
-        [{:imgex, "~> 0.0.1"}]
+        [{:imgex, "~> 0.0.2"}]
       end
     ```
 
