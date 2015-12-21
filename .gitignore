@@ -3,6 +3,7 @@
 /deps
 erl_crash.dump
 *.ez
+/doc
 
 # OS X
 .DS_Store
