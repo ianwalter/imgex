@@ -41,7 +41,7 @@ To generate an Imgix url based on a path (Web Folder and S3 sources) and
 optional parameters do:
 
 ```elixir
-url = Imgex.url "https://some-public-url.com/cats.jpg", %{w: 700}
+url = Imgex.url "/images/cats.jpg", %{w: 700}
 ```
 
 To generate an Imgix url based on a public URL (Web Proxy sources) and optional
