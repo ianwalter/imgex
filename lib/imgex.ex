@@ -53,9 +53,7 @@ defmodule Imgex do
   def url(path, params \\ nil, source \\ configured_source) do
 
     # Add query parameters to the path.
-    if params !== nil do
-      path = path <> "?" <> URI.encode_query(params)
-    end
+    path = path_with_params(path, params)
 
     # Use a md5 hash of the path and secret token as a signature.
     signature = Base.encode16(:erlang.md5(source.token <> path), case: :lower)
@@ -68,5 +66,11 @@ defmodule Imgex do
     end
 
   end
+
+  defp path_with_params(path, nil), do: path
+  defp path_with_params(path, params) when is_map(params) do
+    path <> "?" <> URI.encode_query(params)
+  end
+
 
 end
