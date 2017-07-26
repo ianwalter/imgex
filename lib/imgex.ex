@@ -26,7 +26,7 @@ defmodule Imgex do
       iex> Imgex.proxy_url "http://avatars.com/john-smith.png", %{w: 400, h: 300}
       "https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?h=300&w=400&s=a201fe1a3caef4944dcb40f6ce99e746"
   """
-  def proxy_url(path, params \\ nil, source \\ configured_source) do
+  def proxy_url(path, params \\ nil, source \\ configured_source()) do
 
     # URI-encode the public URL.
     path =  "/" <> URI.encode(path, &URI.char_unreserved?/1)
@@ -50,7 +50,7 @@ defmodule Imgex do
       iex> Imgex.url "/images/jets.png", %{con: 10}, %{domain: "https://cannonball.imgix.net", token: "xxx187xxx"}
       "https://cannonball.imgix.net/images/jets.png?con=10&s=d982f04bbca4d819971496524aa5f95a"
   """
-  def url(path, params \\ nil, source \\ configured_source) do
+  def url(path, params \\ nil, source \\ configured_source()) do
 
     # Add query parameters to the path.
     path = path_with_params(path, params)
