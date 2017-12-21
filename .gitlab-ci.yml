@@ -4,5 +4,5 @@ test:
   stage: test
   script:
     - mix local.hex --force
-    - mix deps.get
+    - mix deps.get --only test
     - mix test
