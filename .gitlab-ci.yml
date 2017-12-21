@@ -3,5 +3,6 @@ image: elixir:latest
 test:
   stage: test
   script:
+    - mix local.hex --force
     - mix deps.get
     - mix test
