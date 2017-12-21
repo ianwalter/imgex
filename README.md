@@ -1,6 +1,8 @@
-# imgex [![Hex Version](https://img.shields.io/hexpm/v/imgex.svg)](https://hex.pm/packages/imgex) [![Build Status](https://semaphoreci.com/api/v1/projects/51b06656-01c9-4db2-8794-dfdeb797651a/632439/shields_badge.svg)](https://semaphoreci.com/ianwalter/imgex)
+# imgex
+> Unofficial client library for generating imgix URLs in Elixir
 
-**Unofficial client library for generating imgix URLs in Elixir**
+[![Hex version][hex-image]][hex-url]
+[![Build status][build-image]][build-url]
 
 ## Installation
 
@@ -50,3 +52,8 @@ parameters do:
 ```elixir
 url = Imgex.proxy_url "https://some-public-url.com/cats.jpg", %{w: 700}
 ```
+
+[hex-image]: https://img.shields.io/hexpm/v/imgex.svg
+[hex-url]: https://hex.pm/packages/imgex
+[build-image]: https://gitlab.recursive.run/ianwalter/imgex/badges/master/pipeline.svg
+[build-url]: https://gitlab.recursive.run/ianwalter/imgex/pipelines

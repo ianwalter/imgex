@@ -72,5 +72,4 @@ defmodule Imgex do
     path <> "?" <> URI.encode_query(params)
   end
 
-
 end
