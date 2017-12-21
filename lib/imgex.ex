@@ -15,7 +15,7 @@ defmodule Imgex do
   @doc """
   Generates a secure Imgix URL from a Web Proxy source given:
   * `path` - The full public image URL.
-  * `params` - (optional) Imgix API parameters used to manipulate the image.
+  * `params` - (optional) A map containing Imgix API parameters used to manipulate the image.
   * `source` - (optional) A map containing Imgix source information:
       * `:token` - The secure token used to sign API requests.
       * `:domain` - The Imgix source domain.
@@ -26,7 +26,7 @@ defmodule Imgex do
       iex> Imgex.proxy_url "http://avatars.com/john-smith.png", %{w: 400, h: 300}
       "https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?h=300&w=400&s=a201fe1a3caef4944dcb40f6ce99e746"
   """
-  def proxy_url(path, params \\ nil, source \\ configured_source()) do
+  def proxy_url(path, params \\ %{}, source \\ configured_source()) when is_map(params) do
 
     # URI-encode the public URL.
     path =  "/" <> URI.encode(path, &URI.char_unreserved?/1)
@@ -39,7 +39,7 @@ defmodule Imgex do
   @doc """
   Generates a secure Imgix URL given:
   * `path` - The URL path to the image.
-  * `params` - (optional) Imgix API parameters used to manipulate the image.
+  * `params` - (optional) A map containing Imgix API parameters used to manipulate the image.
   * `source` - (optional) A map containing Imgix source information:
       * `:token` - The secure token used to sign API requests.
       * `:domain` - The Imgix source domain.
@@ -50,8 +50,7 @@ defmodule Imgex do
       iex> Imgex.url "/images/jets.png", %{con: 10}, %{domain: "https://cannonball.imgix.net", token: "xxx187xxx"}
       "https://cannonball.imgix.net/images/jets.png?con=10&s=d982f04bbca4d819971496524aa5f95a"
   """
-  def url(path, params \\ nil, source \\ configured_source()) do
-
+  def url(path, params \\ %{}, source \\ configured_source()) when is_map(params) do
     # Add query parameters to the path.
     path = path_with_params(path, params)
 
@@ -59,17 +58,16 @@ defmodule Imgex do
     signature = Base.encode16(:erlang.md5(source.token <> path), case: :lower)
 
     # Append the signature to verify the request is valid and return the URL.
-    if params !== nil do
-      source.domain <> path <> "&s=" <> signature
-    else
+    if params == %{} do
       source.domain <> path <> "?s=" <> signature
+    else
+      source.domain <> path <> "&s=" <> signature
     end
 
   end
 
-  defp path_with_params(path, nil), do: path
+  defp path_with_params(path, params) when params == %{}, do: path
   defp path_with_params(path, params) when is_map(params) do
     path <> "?" <> URI.encode_query(params)
   end
-
 end
