@@ -1,0 +1,7 @@
+image: elixir:latest
+
+test:
+  stage: test
+  script:
+    - mix deps.get
+    - mix test
