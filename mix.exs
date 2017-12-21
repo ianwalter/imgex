@@ -5,7 +5,7 @@ defmodule Imgex.Mixfile do
     [
       files: ["lib", "mix.exs", "README.md", "LICENSE"],
       maintainers: ["Ian Walter"],
-      licenses: ["MIT"],
+      licenses: ["ISC"],
       links: %{
         "GitLab" => "https://gitlab.recursive.run/ianwalter/imgex",
         "GitHub" => "https://github.com/ianwalter/imgex"
