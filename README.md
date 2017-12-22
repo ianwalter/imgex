@@ -13,7 +13,7 @@ installed as:
 
     ```elixir
       def deps do
-        [{:imgex, "~> 0.1.0"}]
+        [{:imgex, "~> 0.2.0"}]
       end
     ```
 

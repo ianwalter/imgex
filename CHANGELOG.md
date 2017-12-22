@@ -1,11 +1,14 @@
 # Changes to imgex
 
-## Pending changes
+## v0.2.0
 
-* Support sending in an empty map as params
+* [#6: Changing main repo to gitlab.recursive.run/ianwalter/imgex](https://gitlab.recursive.run/ianwalter/imgex/merge_requests/6)
+* [#7: Special-case handling of empty map](https://github.com/ianwalter/imgex/pull/7)
 
-Breaking Changes:
-* `Imgex.proxy_url/3` and `Imgex.url/3` no longer support params with value `nil`. Instead either don't pass the argument or pass in an empty map (`%{}`)
+**Breaking Changes:**
+
+* `Imgex.proxy_url/3` and `Imgex.url/3` no longer support params with value
+  `nil`. Instead either don't pass the argument or pass in an empty map (`%{}`)
 
 ## v0.1.1
 * [#4: Extract path generation to remove Elixir 1.3 warning](https://github.com/ianwalter/imgex/issues/4)
