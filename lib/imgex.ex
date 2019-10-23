@@ -7,10 +7,11 @@ defmodule Imgex do
   Provides configured source information when it's not passed explicitly to
   url/3 or proxy_url/3.
   """
-  def configured_source, do: %{
-    token: Application.get_env(:imgex, :secure_token),
-    domain: Application.get_env(:imgex, :imgix_domain)
-  }
+  def configured_source,
+    do: %{
+      token: Application.get_env(:imgex, :secure_token),
+      domain: Application.get_env(:imgex, :imgix_domain)
+    }
 
   @doc """
   Generates a secure Imgix URL from a Web Proxy source given:

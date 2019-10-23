@@ -24,8 +24,8 @@ defmodule Imgex.Mixfile do
       app: :imgex,
       version: "0.2.0",
       elixir: "~> 1.1",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       description: description(),
       package: package()
