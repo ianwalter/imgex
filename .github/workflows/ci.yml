@@ -1,0 +1,16 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: elixir
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Install Hex
+        run: mix local.hex --force
+      - name: Install Dependencies
+        run: mix deps.get --only test
+      - name: Test
+        run: mix test
