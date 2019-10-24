@@ -55,7 +55,7 @@ url = Imgex.proxy_url "https://some-public-url.com/cats.jpg", %{w: 700}
 
 &nbsp;
 
-[Created by Ian Walter](https://ianwalter.dev)
+Created by [Ian Walter](https://ianwalter.dev)
 
 [hexImage]: https://img.shields.io/hexpm/v/imgex.svg
 [hexUrl]: https://hex.pm/packages/imgex
