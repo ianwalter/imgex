@@ -1,8 +1,8 @@
 # imgex
 > Unofficial client library for generating imgix URLs in Elixir
 
-[![Hex version][hex-image]][hex-url]
-[![Build status][build-image]][build-url]
+[![Hex version][hexImage]][hexUrl]
+[![CI][ciImage]][ciUrl]
 
 ## Installation
 
@@ -55,9 +55,9 @@ url = Imgex.proxy_url "https://some-public-url.com/cats.jpg", %{w: 700}
 
 &nbsp;
 
-ISC © [Ian Walter](https://iankwalter.com)
+Created by [Ian Walter](https://ianwalter.dev)
 
-[hex-image]: https://img.shields.io/hexpm/v/imgex.svg
-[hex-url]: https://hex.pm/packages/imgex
-[build-image]: https://gitlab.recursive.run/ianwalter/imgex/badges/master/pipeline.svg
-[build-url]: https://gitlab.recursive.run/ianwalter/imgex/pipelines
+[hexImage]: https://img.shields.io/hexpm/v/imgex.svg
+[hexUrl]: https://hex.pm/packages/imgex
+[ciImage]: https://github.com/ianwalter/imgex/workflows/CI/badge.svg
+[ciUrl]: https://github.com/ianwalter/imgex/actions
