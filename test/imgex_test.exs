@@ -12,6 +12,11 @@ defmodule ImgexTest do
              "https://my-social-network.imgix.net/images/jets.png?s=7c6a3ef8679f4965f5aaecb66547fa61"
   end
 
+  test "url/3 without token generates unsigned url" do
+    assert Imgex.url("/images/jets.png", %{}, %{token: nil}) ==
+             "https://my-social-network.imgix.net/images/jets.png"
+  end
+
   describe "srcset/3" do
     @default_srcset_widths ~w(
       100 116 134 156 182 210 244 282 328 380 442 512 594 688 798 926 1074
