@@ -97,7 +97,7 @@ defmodule Imgex do
   * `path` - The URL path to the image.
   * `params` - (optional) A map containing Imgix API parameters used to manipulate the image.
   * `source` - (optional) A map containing Imgix source information:
-      * `:token` - The secure token used to sign API requests.
+      * `:token` - The secure token used to sign API requests. Set `nil` to disable signing.
       * `:domain` - The Imgix source domain.
 
   ## Examples
@@ -106,18 +106,25 @@ defmodule Imgex do
       iex> Imgex.url "/images/jets.png", %{con: 10}, %{domain: "https://cannonball.imgix.net", token: "xxx187xxx"}
       "https://cannonball.imgix.net/images/jets.png?con=10&s=d982f04bbca4d819971496524aa5f95a"
   """
-  def url(path, params \\ %{}, source \\ configured_source()) when is_map(params) do
+  def url(path, params \\ %{}, source \\ %{}) when is_map(params) do
+    source = Map.merge(configured_source(), source)
+
     # Add query parameters to the path.
     path = path_with_params(path, params)
+    url = source.domain <> path
 
-    # Use a md5 hash of the path and secret token as a signature.
-    signature = Base.encode16(:erlang.md5(source.token <> path), case: :lower)
+    if token = source.token do
+      # Use a md5 hash of the path and secret token as a signature.
+      signature = Base.encode16(:erlang.md5(token <> path), case: :lower)
 
-    # Append the signature to verify the request is valid and return the URL.
-    if params == %{} do
-      source.domain <> path <> "?s=" <> signature
+      # Append the signature to verify the request is valid and return the URL.
+      if params == %{} do
+        url <> "?s=" <> signature
+      else
+        url <> "&s=" <> signature
+      end
     else
-      source.domain <> path <> "&s=" <> signature
+      url
     end
   end
 
