@@ -5,7 +5,7 @@ defmodule Imgex do
 
   @doc """
   Provides configured source information when it's not passed explicitly to
-  url/3 or proxy_url/3.
+  `url/3` or `proxy_url/3`.
   """
   def configured_source,
     do: %{
@@ -22,10 +22,12 @@ defmodule Imgex do
       * `:domain` - The Imgix source domain.
 
   ## Examples
+
       iex> Imgex.proxy_url "http://avatars.com/john-smith.png"
       "https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?s=493a52f008c91416351f8b33d4883135"
       iex> Imgex.proxy_url "http://avatars.com/john-smith.png", %{w: 400, h: 300}
       "https://my-social-network.imgix.net/http%3A%2F%2Favatars.com%2Fjohn-smith.png?h=300&w=400&s=a201fe1a3caef4944dcb40f6ce99e746"
+
   """
   def proxy_url(path, params \\ %{}, source \\ configured_source()) when is_map(params) do
     # URI-encode the public URL.
@@ -62,6 +64,7 @@ defmodule Imgex do
       * `:domain` - The Imgix source domain.
 
   ## Examples
+
       iex> Imgex.srcset("/images/lulu.jpg", %{w: 100})
       "https://my-social-network.imgix.net/images/lulu.jpg?dpr=1&w=100&s=9bd210f344a0f65032951a9cf171c40e 1x,
       https://my-social-network.imgix.net/images/lulu.jpg?dpr=2&w=100&s=33520b8f84fa72afa28539d66fb2734f 2x,
@@ -74,6 +77,7 @@ defmodule Imgex do
       https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=3&h=500&s=b1f39589cf13b10a7480c4b90f4dcea4 3x,
       https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=4&h=500&s=1be6ccb379a227b8e4cfa8ebcbca2b76 4x,
       https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=5&h=500&s=455776036fb49c420f20d93fb59af96e 5x"
+
   """
   def srcset(
         path,
@@ -101,10 +105,12 @@ defmodule Imgex do
       * `:domain` - The Imgix source domain.
 
   ## Examples
+
       iex> Imgex.url "/images/jets.png"
       "https://my-social-network.imgix.net/images/jets.png?s=7c6a3ef8679f4965f5aaecb66547fa61"
       iex> Imgex.url "/images/jets.png", %{con: 10}, %{domain: "https://cannonball.imgix.net", token: "xxx187xxx"}
       "https://cannonball.imgix.net/images/jets.png?con=10&s=d982f04bbca4d819971496524aa5f95a"
+
   """
   def url(path, params \\ %{}, source \\ configured_source()) when is_map(params) do
     # Add query parameters to the path.
