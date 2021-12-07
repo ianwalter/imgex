@@ -1,6 +1,6 @@
 <!-- ix-docs-ignore -->
 # imgex
-> Unofficial client library for generating imgix URLs in Elixir
+> An Elixir client library for generating image URLs with imgix
 
 [![Hex version][hexImage]][hexUrl]
 [![CI][ciImage]][ciUrl]
