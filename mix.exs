@@ -3,7 +3,7 @@ defmodule Imgex.Mixfile do
 
   @github_url "https://github.com/ianwalter/imgex"
   @gitlab_url "https://gitlab.recursive.run/ianwalter/imgex"
-  @version "0.2.0"
+  @version "0.3.0"
 
   defp package do
     [

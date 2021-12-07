@@ -1,5 +1,11 @@
 # Changes to imgex
 
+## v0.3.0
+
+* [#8 Add Imgex.srcset to generate srcset pairs](https://github.com/ianwalter/imgex/pull/8)
+* [#11 docs: update README for imgix docs](https://github.com/ianwalter/imgex/pull/11)
+* [#12 Doc/Readme Updates](https://github.com/ianwalter/imgex/pull/12)
+
 ## v0.2.0
 
 * [#6: Changing main repo to gitlab.recursive.run/ianwalter/imgex](https://gitlab.recursive.run/ianwalter/imgex/merge_requests/6)
