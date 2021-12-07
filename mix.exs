@@ -2,7 +2,6 @@ defmodule Imgex.Mixfile do
   use Mix.Project
 
   @github_url "https://github.com/ianwalter/imgex"
-  @gitlab_url "https://gitlab.recursive.run/ianwalter/imgex"
   @version "0.3.0"
 
   defp package do
@@ -12,8 +11,7 @@ defmodule Imgex.Mixfile do
       maintainers: ["Ian Walter"],
       licenses: ["ISC"],
       links: %{
-        "GitHub" => @github_url,
-        "GitLab" => @gitlab_url
+        "GitHub" => @github_url
       }
     ]
   end
