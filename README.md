@@ -1,7 +1,5 @@
 <!-- ix-docs-ignore -->
 # imgex
-=======
-
 > An Elixir client library for generating image URLs with imgix
 
 [![CI](https://github.com/ianwalter/imgex/actions/workflows/ci.yml/badge.svg)](https://github.com/ianwalter/imgex/actions/workflows/ci.yml)
