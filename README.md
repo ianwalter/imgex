@@ -2,8 +2,13 @@
 # imgex
 > An Elixir client library for generating image URLs with imgix
 
-[![Hex version][hexImage]][hexUrl]
-[![CI][ciImage]][ciUrl]
+[![CI](https://github.com/ianwalter/imgex/actions/workflows/ci.yml/badge.svg)](https://github.com/ianwalter/imgex/actions/workflows/ci.yml)
+[![Module Version](https://img.shields.io/hexpm/v/imgex.svg)](https://hex.pm/packages/imgex)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/imgex/)
+[![Total Download](https://img.shields.io/hexpm/dt/imgex.svg)](https://hex.pm/packages/imgex)
+[![License](https://img.shields.io/hexpm/l/imgex.svg)](https://github.com/ianwalter/imgex/blob/master/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/ianwalter/imgex.svg)](https://github.com/ianwalter/imgex/commits/master)
+
 <!-- /ix-docs-ignore -->
 
 - [Installation](#installation)
@@ -16,21 +21,15 @@
 imgex is [available in Hex](https://hex.pm/packages/imgex), the package can be
 installed as:
 
-  1. Add imgex to your list of dependencies in `mix.exs`:
+Add `:imgex` to your list of dependencies in `mix.exs`:
 
-     ```elixir
-     def deps do
-       [{:imgex, "~> 0.2.0"}]
-     end
-     ```
-
-  2. Ensure imgex is started before your application:
-
-     ```elixir
-     def application do
-       [applications: [:imgex]]
-     end
-     ```
+```elixir
+def deps do
+  [
+    {:imgex, "~> 0.2.0"},
+  ]
+end
+```
 
 ## Documentation
 
@@ -46,25 +45,23 @@ See `config/test.exs` for an example of how to configure this.
 
 ## Usage
 
-To generate an imgix url based on a path (Web Folder and S3 sources) and
+To generate an imgix URL based on a path (Web Folder and S3 sources) and
 optional parameters do:
 
 ```elixir
 url = Imgex.url "/images/cats.jpg", %{w: 700}
 ```
 
-To generate an imgix url based on a public URL (Web Proxy sources) and optional
+To generate an imgix URL based on a public URL (Web Proxy sources) and optional
 parameters do:
 
 ```elixir
 url = Imgex.proxy_url "https://some-public-url.com/cats.jpg", %{w: 700}
 ```
 
-&nbsp;
+## Copyright and License
 
-Created by [Ian Walter](https://ianwalter.dev)
+Copyright (c) 2019 [Ian Walter](https://ianwalter.dev)
 
-[hexImage]: https://img.shields.io/hexpm/v/imgex.svg
-[hexUrl]: https://hex.pm/packages/imgex
-[ciImage]: https://github.com/ianwalter/imgex/workflows/CI/badge.svg
-[ciUrl]: https://github.com/ianwalter/imgex/actions
+This work is free. You can redistribute it and/or modify it under the
+terms of the ISC License. See the [LICENSE.md](./LICENSE.md) file for more details.

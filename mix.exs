@@ -1,34 +1,33 @@
 defmodule Imgex.Mixfile do
   use Mix.Project
 
+  @github_url "https://github.com/ianwalter/imgex"
+  @gitlab_url "https://gitlab.recursive.run/ianwalter/imgex"
+  @version "0.2.0"
+
   defp package do
     [
-      files: ["lib", "mix.exs", "README.md", "LICENSE"],
+      description: "An Elixir client library for generating image URLs with imgix",
+      files: ["lib", "mix.exs", "README.md", "LICENSE.md"],
       maintainers: ["Ian Walter"],
       licenses: ["ISC"],
       links: %{
-        "GitLab" => "https://gitlab.recursive.run/ianwalter/imgex",
-        "GitHub" => "https://github.com/ianwalter/imgex"
+        "GitHub" => @github_url,
+        "GitLab" => @gitlab_url
       }
     ]
-  end
-
-  defp description do
-    """
-    An Elixir client library for generating image URLs with imgix
-    """
   end
 
   def project do
     [
       app: :imgex,
-      version: "0.2.0",
-      elixir: "~> 1.1",
+      version: @version,
+      elixir: "~> 1.5",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      package: package(),
       deps: deps(),
-      description: description(),
-      package: package()
+      docs: docs()
     ]
   end
 
@@ -38,8 +37,20 @@ defmodule Imgex.Mixfile do
 
   defp deps do
     [
-      {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.10", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
+    ]
+  end
+
+  defp docs do
+    [
+      extras: [
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
+      main: "readme",
+      source_url: @github_url,
+      source_ref: "v#{@version}",
+      formatters: ["html"]
     ]
   end
 end
