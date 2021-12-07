@@ -15,7 +15,7 @@ defmodule Imgex.Mixfile do
 
   defp description do
     """
-    Unofficial client library for generating imgix URLs in Elixir
+    An Elixir client library for generating image URLs with imgix
     """
   end
 
