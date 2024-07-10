@@ -20,7 +20,7 @@ defmodule Imgex.Mixfile do
     [
       app: :imgex,
       version: @version,
-      elixir: "~> 1.5",
+      elixir: "~> 1.9",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
@@ -30,7 +30,7 @@ defmodule Imgex.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   defp deps do

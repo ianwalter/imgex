@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 config :imgex,
   imgix_domain: "https://my-social-network.imgix.net",
