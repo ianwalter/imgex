@@ -66,18 +66,18 @@ defmodule Imgex do
   ## Examples
 
       iex> Imgex.srcset("/images/lulu.jpg", %{w: 100})
-      "https://my-social-network.imgix.net/images/lulu.jpg?dpr=1&w=100&s=9bd210f344a0f65032951a9cf171c40e 1x,
-      https://my-social-network.imgix.net/images/lulu.jpg?dpr=2&w=100&s=33520b8f84fa72afa28539d66fb2734f 2x,
-      https://my-social-network.imgix.net/images/lulu.jpg?dpr=3&w=100&s=97d0f1731b4c8d8dd609424dfca2eab5 3x,
-      https://my-social-network.imgix.net/images/lulu.jpg?dpr=4&w=100&s=b96a02e08eeb50df5a75223c998e46f5 4x,
-      https://my-social-network.imgix.net/images/lulu.jpg?dpr=5&w=100&s=9ba1ab37db9f09283d9194223fbafb2f 5x"
-      iex> Imgex.srcset("/images/lulu.jpg", %{ar: "3:4", h: 500})
-      "https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=1&h=500&s=fa2016a84454271a30c00c93a6d236a2 1x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=2&h=500&s=43303719ce9a76e618c6d16ef7b5f30f 2x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=3&h=500&s=b1f39589cf13b10a7480c4b90f4dcea4 3x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=4&h=500&s=1be6ccb379a227b8e4cfa8ebcbca2b76 4x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=5&h=500&s=455776036fb49c420f20d93fb59af96e 5x"
+      "https://my-social-network.imgix.net/images/lulu.jpg?w=100&dpr=1&s=1d6228901994e4f49be5bff375ab7ddf 1x,
+      https://my-social-network.imgix.net/images/lulu.jpg?w=100&dpr=2&s=db5f1f9dbc10f49bd994cc74ad725170 2x,
+      https://my-social-network.imgix.net/images/lulu.jpg?w=100&dpr=3&s=cb768cdee55ba7adf9914783a5d89461 3x,
+      https://my-social-network.imgix.net/images/lulu.jpg?w=100&dpr=4&s=b428071da30f4ca4035f5d7ed2b582b1 4x,
+      https://my-social-network.imgix.net/images/lulu.jpg?w=100&dpr=5&s=cbbf1e074a65f211bc9cfa332b743fbd 5x"
 
+      iex> Imgex.srcset("/images/lulu.jpg", %{ar: "3:4", h: 500})
+      "https://my-social-network.imgix.net/images/lulu.jpg?h=500&ar=3%3A4&dpr=1&s=8551d9e14f36521011b920b386cf2e21 1x,
+      https://my-social-network.imgix.net/images/lulu.jpg?h=500&ar=3%3A4&dpr=2&s=f05ffb5251b48d69e247498c3a7644b5 2x,
+      https://my-social-network.imgix.net/images/lulu.jpg?h=500&ar=3%3A4&dpr=3&s=16dff5250b859813cb374a3e1b2032d2 3x,
+      https://my-social-network.imgix.net/images/lulu.jpg?h=500&ar=3%3A4&dpr=4&s=f601bfbee72f3f3a2728dce9db2bc024 4x,
+      https://my-social-network.imgix.net/images/lulu.jpg?h=500&ar=3%3A4&dpr=5&s=cee531e2cb3b29342613a8e7d90308bb 5x"
   """
   def srcset(
         path,
