@@ -1,5 +1,10 @@
 # Changes to imgex
 
+## Unreleased
+
+* [#15 Fix compilation warnings and update deps](https://github.com/ianwalter/imgex/pull/15)
+* [#17 Switch to using keyword lists internally](https://github.com/ianwalter/imgex/pull/17)
+
 ## v0.3.0
 
 * [#8 Add Imgex.srcset to generate srcset pairs](https://github.com/ianwalter/imgex/pull/8)

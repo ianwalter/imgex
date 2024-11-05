@@ -71,20 +71,20 @@ defmodule Imgex do
       https://my-social-network.imgix.net/images/lulu.jpg?dpr=3&w=100&s=97d0f1731b4c8d8dd609424dfca2eab5 3x,
       https://my-social-network.imgix.net/images/lulu.jpg?dpr=4&w=100&s=b96a02e08eeb50df5a75223c998e46f5 4x,
       https://my-social-network.imgix.net/images/lulu.jpg?dpr=5&w=100&s=9ba1ab37db9f09283d9194223fbafb2f 5x"
-      iex> Imgex.srcset("/images/lulu.jpg", %{ar: "3:4", h: 500})
-      "https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=1&h=500&s=fa2016a84454271a30c00c93a6d236a2 1x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=2&h=500&s=43303719ce9a76e618c6d16ef7b5f30f 2x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=3&h=500&s=b1f39589cf13b10a7480c4b90f4dcea4 3x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=4&h=500&s=1be6ccb379a227b8e4cfa8ebcbca2b76 4x,
-      https://my-social-network.imgix.net/images/lulu.jpg?ar=3%3A4&dpr=5&h=500&s=455776036fb49c420f20d93fb59af96e 5x"
-
+      iex> Imgex.srcset("/images/lulu.jpg", ar: "3:4", h: 500)
+      "https://my-social-network.imgix.net/images/lulu.jpg?dpr=1&ar=3%3A4&h=500&s=842a70d9c7ead7417b4a8056f45a88b3 1x,
+      https://my-social-network.imgix.net/images/lulu.jpg?dpr=2&ar=3%3A4&h=500&s=7cce91f2cd0d2bd1d252ca241523c09b 2x,
+      https://my-social-network.imgix.net/images/lulu.jpg?dpr=3&ar=3%3A4&h=500&s=509e0045d21a08324811d2db978c874c 3x,
+      https://my-social-network.imgix.net/images/lulu.jpg?dpr=4&ar=3%3A4&h=500&s=cc5790442b6185768435a48a44e040c9 4x,
+      https://my-social-network.imgix.net/images/lulu.jpg?dpr=5&ar=3%3A4&h=500&s=cf724f11656961377da13f8608c60b4a 5x"
   """
   def srcset(
         path,
-        params \\ %{},
+        params \\ [],
         source \\ configured_source()
       )
-      when is_map(params) do
+      when (is_list(params) or is_map(params)) do
+    params = to_list(params)
     width = params[:w]
     height = params[:h]
     aspect_ratio = params[:ar]
@@ -112,7 +112,8 @@ defmodule Imgex do
       "https://cannonball.imgix.net/images/jets.png?con=10&s=d982f04bbca4d819971496524aa5f95a"
 
   """
-  def url(path, params \\ %{}, source \\ configured_source()) when is_map(params) do
+  def url(path, params \\ [], source \\ configured_source()) when (is_map(params) or is_list(params)) do
+    params = to_list(params)
     # Add query parameters to the path.
     path = path_with_params(path, params)
 
@@ -120,16 +121,19 @@ defmodule Imgex do
     signature = Base.encode16(:erlang.md5(source.token <> path), case: :lower)
 
     # Append the signature to verify the request is valid and return the URL.
-    if params == %{} do
+    if params == [] do
       source.domain <> path <> "?s=" <> signature
     else
       source.domain <> path <> "&s=" <> signature
     end
   end
 
-  defp path_with_params(path, params) when params == %{}, do: path
+  defp to_list(params) when is_list(params), do: params
+  defp to_list(params) when is_map(params), do: Map.to_list(params)
 
-  defp path_with_params(path, params) when is_map(params) do
+  defp path_with_params(path, params) when params == [], do: path
+
+  defp path_with_params(path, params) when is_list(params) do
     path <> "?" <> URI.encode_query(params)
   end
 
@@ -170,18 +174,18 @@ defmodule Imgex do
 
   @default_srcset_target_ratios [1, 2, 3, 4, 5]
 
-  defp build_srcset_pairs(path, params, source) when is_map(params) do
+  defp build_srcset_pairs(path, params, source) when is_list(params) do
     @default_srcset_target_widths
     |> Enum.map(fn width ->
-      updated_params = Map.put(params, :w, width)
+      updated_params = Keyword.put(params, :w, width)
       url(path, updated_params, source) <> " #{width}w"
     end)
     |> Enum.join(",\n")
   end
 
-  defp build_dpr_srcset(path, params, source) when is_map(params) do
+  defp build_dpr_srcset(path, params, source) when is_list(params) do
     Enum.map(@default_srcset_target_ratios, fn ratio ->
-      updated_params = Map.put(params, :dpr, ratio)
+      updated_params = Keyword.put(params, :dpr, ratio)
       url(path, updated_params, source) <> " #{ratio}x"
     end)
     |> Enum.join(",\n")
