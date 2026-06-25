@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.4.0
+
 * [#15 Fix compilation warnings and update deps](https://github.com/ianwalter/imgex/pull/15)
 * [#17 Switch to using keyword lists internally](https://github.com/ianwalter/imgex/pull/17)
 
